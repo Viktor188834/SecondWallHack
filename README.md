@@ -2,6 +2,7 @@
 
 🔒copy and paste into your injector: 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Viktor188834/SecondWallHack/refs/heads/main/WallHackRoblox.lua"))()
+
 ( ❗ SCRIPT NOT TESTED, BUGS POSSIBLE ❗ )
 
 🔑download Top executor for pc users: 
