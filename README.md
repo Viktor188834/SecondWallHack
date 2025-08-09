@@ -4,12 +4,10 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Viktor188834/SecondWallHack/refs/heads/main/WallHackRoblox.lua"))()
 
 🔑download Top executor for pc users: 
-lhttps://www.xeno.onl
+https://www.xeno.onl
 
 local Binds🔌 = {
-
-["On/Off WallHack"] = Enum.KeyCode.RightControl
-   
+ ["On/Off WallHack"] = Enum.KeyCode.RightControl
 }
 
 https://github.com/Viktor188834
