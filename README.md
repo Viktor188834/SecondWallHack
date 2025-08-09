@@ -5,9 +5,7 @@
 🔑download Top executor for pc users: https://www.xeno.onl
 
 local Binds🔌 = {
-
-   Enum.KeyCode.RightControl -- Off/On WallHack
- 
+///Enum.KeyCode.RightControl -- Off/On WallHack
 }
 
 https://github.com/Viktor188834
