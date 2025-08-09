@@ -6,7 +6,7 @@
 
 local Binds🔌 = {
 
- Enum.KeyCode.RightControl -- Off/On WallHack
+   Enum.KeyCode.RightControl -- Off/On WallHack
  
 }
 
