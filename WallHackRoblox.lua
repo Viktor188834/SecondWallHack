@@ -6,6 +6,7 @@ local Ser = {
 }
 
 local plr = Ser.Plrs.LocalPlayer
+
 local mouse = plr:GetMouse()
 local on = false
 
@@ -163,7 +164,7 @@ local function CreateBox(ChoosedChildren, Sizee)
 end
 
 local function SetWH(parent)
-	parent:WaitForChild("Humanoid")
+	wait(0.7)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
 	if Ser.Plrs:FindFirstChild(parent.Name) then
@@ -174,6 +175,7 @@ local function SetWH(parent)
 	v1.Parent = parent
 	v1.Name = "WallHack"
 	v1.AlwaysOnTop = true
+	v1.ResetOnSpawn = false
 	local v2 = Instance.new("Frame")
 	v2.Parent = v1
 	v2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
@@ -392,7 +394,7 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 									end
 								end
 							end
-							if CP:IsA("Part") then
+							if CP:IsA("Part") then	
 								for o=1, #CP:GetChildren() do
 									if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
 										CP:GetChildren()[o].Visible = false
@@ -406,10 +408,8 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 		end
 	end
 end)
-
 for i=1, #Ser.Plrs:GetPlayers() do
 	local ChoosedPlr = Ser.Plrs:GetPlayers()[i]
-	SetWH(ChoosedPlr)
 	if ChoosedPlr ~= plr then
 		ChoosedPlr.CharacterAdded:Connect(function(char)
 			SetWH(char)
