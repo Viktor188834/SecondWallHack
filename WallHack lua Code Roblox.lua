@@ -205,7 +205,7 @@ end)
 
 Ser.UIS.InputBegan:Connect(function(i, g)
 	if g then return end
-	if i.KeyCode == Enum.KeyCode.LeftControl then
+	if i.KeyCode == Enum.KeyCode.RightControl then
 		if not on then
 			on = true
 			for i, v in pairs(Ser.Plrs:GetPlayers()) do
