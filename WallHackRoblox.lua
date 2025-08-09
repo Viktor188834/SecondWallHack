@@ -102,7 +102,7 @@ v0.FocusLost:Connect(function()
 	v0.Text = "Syceffuly!"
 end)
 wait(5)
-for i=30, 1, -1 do
+for i=30, 0, -1 do
 	wait(1)
 	if massage ~= nil then
 		break
