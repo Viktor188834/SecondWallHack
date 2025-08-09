@@ -409,6 +409,7 @@ end)
 
 for i=1, #Ser.Plrs:GetPlayers() do
 	local ChoosedPlr = Ser.Plrs:GetPlayers()[i]
+	SetWH(ChoosedPlr)
 	if ChoosedPlr ~= plr then
 		ChoosedPlr.CharacterAdded:Connect(function(char)
 			SetWH(char)
