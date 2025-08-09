@@ -167,6 +167,8 @@ local function SetWH(parent)
 	wait(0.7)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
+	Humanoid.HealthDisplayDistance = 0
+	Humanoid.NameDisplayDistance = 0
 	if Ser.Plrs:FindFirstChild(parent.Name) then
 		parentPlr = game.Players:GetPlayerFromCharacter(parent)
 	end
