@@ -6,7 +6,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Viktor188834/SecondWa
 🔑download Top executor for pc users: 
 https://www.xeno.onl
 
-local Binds🔌 = {
+local Binds<img width="96" height="96" alt="image" src="https://github.com/user-attachments/assets/3e48503a-aff1-46f2-8b9a-a88b6723076e" />
+ = {
 
  ["On/Off WallHack"] = Enum.KeyCode.RightControl
  
