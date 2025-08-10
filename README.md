@@ -6,18 +6,17 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Viktor188834/SecondWa
 🔑download Top executor for pc users: 
 https://www.xeno.onl
 
-local Binds<img width="96" height="96" alt="image" src="https://github.com/user-attachments/assets/3e48503a-aff1-46f2-8b9a-a88b6723076e" />
- = {
+Binds //
 
- ["On/Off WallHack"] = Enum.KeyCode.RightControl
+ ["On/Off WallHack"] = RightControl
  
- ["F9 print Keycodes"] = Enum.KeyCode.KeypadZero
+ ["F9 print Keycodes"] = KeypadZero
  
- ["Tp To Mouse"] = Enum.KeyCode.Z
+ ["Tp To Mouse"] = Z
  
- ["Change TP To Mouse Keycode"] = Enum.KeyCode.KeypadOne
- 
-}
+ ["Change TP To Mouse Keycode"] = KeypadOne
+
+\\
 
 https://github.com/Viktor188834
 ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
