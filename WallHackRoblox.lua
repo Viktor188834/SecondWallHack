@@ -1,12 +1,12 @@
 local Ser = {
 	Plrs = game:GetService("Players"),
 	UIS = game:GetService("UserInputService"),
-	GuiS = game:GetService("TextChatService"),
-	GuiMain = game:GetService("StarterGui")
+	TextCS = game:GetService("TextChatService"),
+	SG = game:GetService("StarterGui"),
+	Debris = game:GetService("Debris")
 }
 
 local plr = Ser.Plrs.LocalPlayer
-
 local mouse = plr:GetMouse()
 local on = false
 
@@ -45,35 +45,27 @@ wait(2)
 local function notif(massage, Color)
 	if Color then
 		local r, g, b = math.floor(Color.R * 255), math.floor(Color.G * 255), math.floor(Color.B * 255)
-		Ser.GuiS.TextChannels.RBXGeneral:DisplaySystemMessage("<font color='rgb("..r..","..g..","..b..")'>"..massage.."</font>")
+		Ser.TextCS.TextChannels.RBXGeneral:DisplaySystemMessage("<font color='rgb("..r..","..g..","..b..")'>"..massage.."</font>")
 		CreateTextButton01(massage, Color)
 	else
-		Ser.GuiS.TextChannels.RBXGeneral:DisplaySystemMessage(massage)
+		Ser.TextCS.TextChannels.RBXGeneral:DisplaySystemMessage(massage)
 	end
 end
 
-Ser.GuiMain:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+Ser.SG:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
 
 notif("		Type The Color Of WallHack / Напишите в чат цвет Волл Хака")
 notif("		Avaibled Colors / Возможные цвета (обезательно напишите на английском): ")
 notif("Blue,", Color3.fromRGB(0, 0, 255))
-wait(0.5)
 notif("Red,", Color3.fromRGB(255, 0, 0))
-wait(0.5)
 notif("Gray,", Color3.fromRGB(134, 134, 134))
-wait(0.5)
 notif("Yellow,", Color3.fromRGB(255, 238, 0))
-wait(0.5)
 notif("Black and Red,", Color3.fromRGB(102, 0, 0))
-wait(0.5)
 notif("Black and Blue,", Color3.fromRGB(11, 0, 97))
 wait(0.5)
 notif("Green,", Color3.fromRGB(0, 162, 32))
-wait(0.5)
 notif("Purple,", Color3.fromRGB(127, 15, 255))
-wait(0.5)
 notif("Lime,", Color3.fromRGB(60, 255, 0))
-wait(0.5)
 notif("Black and Green", Color3.fromRGB(4, 74, 0))
 wait(2)
 notif("⬇")
@@ -96,13 +88,17 @@ v0.BackgroundColor3 = Color3.fromRGB(183, 255, 157)
 v0.TextColor3 = Color3.fromRGB(255, 255, 255)
 v0.TextStrokeTransparency = 0
 v0.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+local Testing = false
+if Testing == true then
+	massage = "Red"
+end
 v0.FocusLost:Connect(function()
-	if v0.Text ~= "" then
+	if v0.Text ~= "" and v0.Text ~= " " then
 		massage = v0.Text
 	end
 	v0.Text = "Syceffuly!"
 end)
-wait(5)
+wait(1)
 for i=30, 0, -1 do
 	wait(1)
 	if massage ~= nil then
@@ -115,7 +111,7 @@ end
 gui:Destroy()
 guiuui:Destroy()
 
-Ser.GuiMain:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+Ser.SG:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
 if massage then
 	if massage == "Blue" then
 		WallHackColor = Color3.fromRGB(0, 0, 255)
@@ -167,8 +163,6 @@ local function SetWH(parent)
 	wait(0.7)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
-	Humanoid.HealthDisplayDistance = 0
-	Humanoid.NameDisplayDistance = 0
 	if Ser.Plrs:FindFirstChild(parent.Name) then
 		parentPlr = game.Players:GetPlayerFromCharacter(parent)
 	end
@@ -336,6 +330,27 @@ local function SetWH(parent)
 	end
 end
 
+function CreateTextInfo(Text, Duration)
+	local g1 = Instance.new("ScreenGui")
+	g1.Parent = plr.PlayerGui
+	g1.Name = ""
+	g1.ResetOnSpawn = false
+	local g2 = Instance.new("TextLabel")
+	g2.Parent = g1
+	g2.Text = Text
+	g2.Size = UDim2.new(0.6, 0, 0.2, 0)
+	g2.Position = UDim2.new(0.2, 0, 0, 0)
+	g2.TextScaled = true
+	g2.TextWrapped = true
+	g2.RichText = true
+	g2.BorderSizePixel = 0
+	g2.TextStrokeTransparency = 0
+	g2.BackgroundTransparency = 1
+	g2.TextColor3 = Color3.fromRGB(234, 234, 234)
+	g2.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+	Ser.Debris:AddItem(g1, Duration or 3)
+end
+
 Ser.Plrs.PlayerAdded:Connect(function(player)
 	if player ~= plr then
 		player.CharacterAdded:Connect(function(char)
@@ -412,9 +427,27 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 end)
 for i=1, #Ser.Plrs:GetPlayers() do
 	local ChoosedPlr = Ser.Plrs:GetPlayers()[i]
+	SetWH(ChoosedPlr.Character)
 	if ChoosedPlr ~= plr then
 		ChoosedPlr.CharacterAdded:Connect(function(char)
 			SetWH(char)
 		end)
 	end
 end
+
+local MouseKeyCode = Enum.KeyCode.Z
+
+Ser.UIS.InputBegan:Connect(function(i, g)
+	if g then return end
+	if i.KeyCode == MouseKeyCode then
+		plr.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(mouse.Hit.Position)
+	elseif i.KeyCode == Enum.KeyCode.KeypadOne then
+		CreateTextInfo("Press Any Key", 5)
+		MouseKeyCode = Ser.UIS.InputBegan:Wait().KeyCode
+		CreateTextInfo("Mouse Key Set To "..MouseKeyCode.Name, 2)
+		Ser.UIS.InputBegan:Wait()
+		return
+	elseif i.KeyCode == Enum.KeyCode.KeypadZero then
+		print("Mouse TP: "..MouseKeyCode.Name.."")
+	end
+end)
