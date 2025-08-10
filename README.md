@@ -9,8 +9,11 @@ https://www.xeno.onl
 local Binds🔌 = {
 
  ["On/Off WallHack"] = Enum.KeyCode.RightControl
+ 
  ["F9 print Keycodes"] = Enum.KeyCode.KeypadZero
+ 
  ["Tp To Mouse"] = Enum.KeyCode.Z
+ 
  ["Change TP To Mouse Keycode"] = Enum.KeyCode.KeypadOne
  
 }
