@@ -143,7 +143,7 @@ local function SetWH(parent)
 	v4.Size = UDim2.new(0.07, 0, 0.95, 0)
 	v4.Position = UDim2.new(0.0175, 0, 0.025, 0)
 	v4.ZIndex = 0
-	v1.Size = UDim2.new(23, 0, 23, 0)
+	v1.Size = UDim2.new(10, 0, 9, 0)
 	v1.Parent = parent
 	v1.Name = "WallHack"
 	v1.AlwaysOnTop = true
@@ -202,8 +202,9 @@ local function SetWH(parent)
 		v9.BackgroundColor3 = parent:FindFirstChildOfClass("BodyColors").TorsoColor3
 	end
 	Humanoid.HealthChanged:Connect(function()
-		v8.Text = Humanoid.Health.."/"..Humanoid.MaxHealth
-		v5:TweenSize(UDim2.new(1, 0, Humanoid.Health/Humanoid.MaxHealth, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.3, false)
+		v5:TweenSize(UDim2.new(1, 0, Humanoid.Health/Humanoid.MaxHealth, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.1, false, function()
+			v8.Text = Humanoid.Health.."/"..Humanoid.MaxHealth
+		end)
 	end)
 	Humanoid.Died:Connect(function()
 		v1:Destroy()
@@ -228,7 +229,13 @@ local function SetWH(parent)
 	for i=1, #parent:GetChildren() do
 		local ChoosedChildren = parent:GetChildren()[i]
 		if ChoosedChildren:IsA("Part") or ChoosedChildren:IsA("MeshPart") then
-			CreateBox(ChoosedChildren)
+			local a = CreateBox(ChoosedChildren)
+			if game.Teams:FindFirstChildOfClass("Team") and parentPlr then
+				a.Color3 = parentPlr.TeamColor.Color
+			end
+			if ChoosedChildren.Name == "Head" and Humanoid.RigType.Name == "R6" then
+				a.Size = Vector3.new(1.2, 1.2, 1.2)
+			end
 		end
 	end
 	if game.Players:FindFirstChild(parent.Name) then
@@ -411,7 +418,7 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 		Ser.UIS.InputBegan:Wait()
 		return
 	elseif i.KeyCode == Enum.KeyCode.KeypadZero then
-		print("Mouse TP: "..MouseKeyCode.Name..", Change Bind Mouse Tp: KeypadOne, : KeypadTwo")
+		print("Mouse TP: "..MouseKeyCode.Name..", Change Bind Mouse Tp: KeypadOne, Ivisible Animation: KeypadTwo")
 	elseif i.KeyCode == Enum.KeyCode.KeypadTwo then
 		if animtrack.IsPlaying then
 			animtrack:Stop()
