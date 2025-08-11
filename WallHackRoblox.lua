@@ -126,33 +126,36 @@ local function SetWH(parent)
 		parentPlr = game.Players:GetPlayerFromCharacter(parent)
 	end
 	local v1 = Instance.new("BillboardGui")
+	local v2 = Instance.new("Frame")
+	local v3 = Instance.new("UICorner")
+	local v4 = Instance.new("UIStroke")
+	local v5 = Instance.new("Frame")
+	local v6 = Instance.new("UICorner")
+	local v7 = Instance.new("TextLabel")
+	local v8 = Instance.new("TextLabel")
+	local v9 = Instance.new("ImageLabel")
+	local v10 = Instance.new("TextLabel")
 	v1.Size = UDim2.new(9, 0, 9, 0)
 	v1.Parent = parent
 	v1.Name = "WallHack"
 	v1.AlwaysOnTop = true
 	v1.ResetOnSpawn = false
-	local v2 = Instance.new("Frame")
 	v2.Parent = v1
 	v2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	v2.BackgroundTransparency = 0
 	v2.Size = UDim2.new(0.06, 0, 0.9, 0)
 	v2.Position = UDim2.new(0.02, 0, 0.05, 0)
-	local v3 = Instance.new("UICorner")
 	v3.CornerRadius = UDim.new(1, 0)
 	v3.Parent = v2
-	local v4 = Instance.new("UIStroke")
 	v4.Parent = v2
 	v4.Thickness = 3
 	v4.Color = Color3.fromRGB(95, 95, 95)
-	local v5 = Instance.new("Frame")
 	v5.Parent = v2
 	v5.BackgroundColor3 = Color3.fromRGB(13, 191, 0)
 	v5.BackgroundTransparency = 0
 	v5.Size = UDim2.new(1, 0, Humanoid.Health/Humanoid.MaxHealth, 0)
-	local v6 = Instance.new("UICorner")
 	v6.CornerRadius = UDim.new(1, 0)
 	v6.Parent = v5
-	local v7 = Instance.new("TextLabel")
 	v7.Parent = v1
 	v7.Text = "Name: "..parent.Name
 	v7.Size = UDim2.new(0.6, 0, 0.2, 0)
@@ -163,7 +166,6 @@ local function SetWH(parent)
 	v7.TextScaled = true
 	v7.TextStrokeTransparency = 0
 	v7.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-	local v8 = Instance.new("TextLabel")
 	v8.Parent = v1
 	v8.Text = Humanoid.Health.."/"..Humanoid.MaxHealth
 	v8.Size = UDim2.new(0.6, 0, 0.2, 0)
@@ -174,13 +176,11 @@ local function SetWH(parent)
 	v8.TextScaled = true
 	v8.TextStrokeTransparency = 0
 	v8.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-	local v9 = Instance.new("ImageLabel")
 	v9.Parent = v1
 	v9.Size = UDim2.new(0.2, 0, 0.2, 0)
 	v9.Position = UDim2.new(0.7, 0, 0.4, 0)
 	v9.BackgroundTransparency = 0
 	v9.BorderSizePixel = 0
-	local v10 = Instance.new("TextLabel")
 	v10.Parent = v1
 	v10.Size = UDim2.new(0.3, 0, 0.2, 0)
 	v10.Position = UDim2.new(0.7, 0, 0.6, 0)
@@ -373,9 +373,29 @@ for i=1, #Ser.Plrs:GetPlayers() do
 end
 
 local MouseKeyCode = Enum.KeyCode.Z
+local animtionr6 = Instance.new("Animation")
+animtionr6.Parent = plr
+animtionr6.Name = "animtionr6"
+animtionr6.AnimationId = "rbxassetid://72591982454540"
+local animtionr15 = Instance.new("Animation")
+animtionr15.Parent = plr
+animtionr15.Name = "animtionr15"
+animtionr15.AnimationId = "rbxassetid://112417396905403"
+local animtrack = nil
+plr.CharacterAdded:Connect(function(char)
+	if char:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15 then
+		animtrack = char:FindFirstChildOfClass("Humanoid"):FindFirstChildOfClass("Animator"):LoadAnimation(animtionr15)
+	else
+		animtrack = char:FindFirstChildOfClass("Humanoid"):FindFirstChildOfClass("Animator"):LoadAnimation(animtionr6)
+	end
+end)
+if plr.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R15 then
+	animtrack = plr.Character:FindFirstChildOfClass("Humanoid"):FindFirstChildOfClass("Animator"):LoadAnimation(animtionr15)
+else
+	animtrack = plr.Character:FindFirstChildOfClass("Humanoid"):FindFirstChildOfClass("Animator"):LoadAnimation(animtionr6)
+end
 
 Ser.UIS.InputBegan:Connect(function(i, g)
-	if g then return end
 	if i.KeyCode == MouseKeyCode then
 		plr.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(mouse.Hit.Position)
 	elseif i.KeyCode == Enum.KeyCode.KeypadOne then
@@ -385,6 +405,12 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 		Ser.UIS.InputBegan:Wait()
 		return
 	elseif i.KeyCode == Enum.KeyCode.KeypadZero then
-		print("Mouse TP: "..MouseKeyCode.Name.."")
+		print("Mouse TP: "..MouseKeyCode.Name..", Change Bind Mouse Tp: KeypadOne, : KeypadTwo")
+	elseif i.KeyCode == Enum.KeyCode.KeypadTwo then
+		if animtrack.IsPlaying then
+			animtrack:Stop()
+		else
+			animtrack:Play()
+		end
 	end
 end)
