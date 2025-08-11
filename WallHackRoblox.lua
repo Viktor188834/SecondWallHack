@@ -140,6 +140,7 @@ local function SetWH(parent)
 	v1.Name = "WallHack"
 	v1.AlwaysOnTop = true
 	v1.ResetOnSpawn = false
+	v1.Adornee = parent:FindFirstChild("HumanoidRootPart")
 	v2.Parent = v1
 	v2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	v2.BackgroundTransparency = 0
@@ -197,23 +198,23 @@ local function SetWH(parent)
 	end
 	Humanoid.HealthChanged:Connect(function()
 		v8.Text = Humanoid.Health.."/"..Humanoid.MaxHealth
-		v5:TweenSize(UDim2.new(1, 0, Humanoid.Health/Humanoid.MaxHealth, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.5, false)
-		if Humanoid.Health <= 0 then
-			v1:Destroy()
-			for i=1, #parent:GetChildren() do
-				local CP = parent:GetChildren()[i]
-				if CP:IsA("MeshPart") then
-					for o=1, #CP:GetChildren() do
-						if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
-							CP:GetChildren()[o]:Destroy()
-						end
+		v5:TweenSize(UDim2.new(1, 0, Humanoid.Health/Humanoid.MaxHealth, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Linear, 0.3, false)
+	end)
+	Humanoid.Died:Connect(function()
+		v1:Destroy()
+		for i=1, #parent:GetChildren() do
+			local CP = parent:GetChildren()[i]
+			if CP:IsA("MeshPart") then
+				for o=1, #CP:GetChildren() do
+					if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
+						CP:GetChildren()[o]:Destroy()
 					end
 				end
-				if CP:IsA("Part") then
-					for o=1, #CP:GetChildren() do
-						if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
-							CP:GetChildren()[o]:Destroy()
-						end
+			end
+			if CP:IsA("Part") then
+				for o=1, #CP:GetChildren() do
+					if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
+						CP:GetChildren()[o]:Destroy()
 					end
 				end
 			end
