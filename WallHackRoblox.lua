@@ -25,8 +25,10 @@ v02.Padding = UDim.new(0, 0)
 v02.VerticalAlignment = Enum.VerticalAlignment.Bottom
 v02.VerticalFlex = "Fill"
 
+local massage = nil
+
 local function CreateTextButton01(Text, Color)
-	local v03 = Instance.new("TextLabel")
+	local v03 = Instance.new("TextButton")
 	v03.Parent = v01
 	v03.Name = Text
 	v03.TextColor3 = Color
@@ -38,6 +40,11 @@ local function CreateTextButton01(Text, Color)
 	v03.TextWrapped = true
 	v03.RichText = true
 	v03.Size = UDim2.new(1, 0, 0.04, 0)
+	v03.MouseButton1Click:Connect(function()
+		massage = Color
+		Ser.Debris:AddItem(v03, 0.1)
+		guiuui:Destroy()
+	end)
 end
 
 -- Color Making
@@ -56,49 +63,26 @@ Ser.SG:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
 
 notif("		Type The Color Of WallHack / Напишите в чат цвет Волл Хака")
 notif("		Avaibled Colors / Возможные цвета (обезательно напишите на английском): ")
-notif("Blue,", Color3.fromRGB(0, 0, 255))
-notif("Red,", Color3.fromRGB(255, 0, 0))
-notif("Gray,", Color3.fromRGB(134, 134, 134))
-notif("Yellow,", Color3.fromRGB(255, 238, 0))
-notif("Black and Red,", Color3.fromRGB(102, 0, 0))
-notif("Black and Blue,", Color3.fromRGB(11, 0, 97))
-wait(0.5)
-notif("Green,", Color3.fromRGB(0, 162, 32))
-notif("Purple,", Color3.fromRGB(127, 15, 255))
-notif("Lime,", Color3.fromRGB(60, 255, 0))
+notif("Black", Color3.fromRGB(0, 0, 0))
+notif("White", Color3.fromRGB(255, 255, 255))
+notif("Blue", Color3.fromRGB(0, 0, 255))
+notif("Red", Color3.fromRGB(255, 0, 0))
+notif("Gray", Color3.fromRGB(134, 134, 134))
+notif("Yellow", Color3.fromRGB(255, 238, 0))
+notif("Black and Red", Color3.fromRGB(102, 0, 0))
+notif("Black and Blue", Color3.fromRGB(11, 0, 97))
+notif("Green", Color3.fromRGB(0, 162, 32))
+notif("Purple", Color3.fromRGB(127, 15, 255))
+notif("Lime", Color3.fromRGB(60, 255, 0))
 notif("Black and Green", Color3.fromRGB(4, 74, 0))
 wait(2)
 notif("⬇")
 
-local massage = nil
-
-local gui = Instance.new("ScreenGui", plr.PlayerGui)
-gui.ResetOnSpawn = false
-gui.Name = "Type The Color"
-local v0 = Instance.new("TextBox", gui)
-v0.Text = "Type The Color Here"
-v0.Size = UDim2.new(0.3, 0, 0.2, 0)
-v0.Position = UDim2.new(0, 0, 0.7, 0)
-v0.BorderSizePixel = 0
-v0.TextScaled = true
-v0.TextWrapped = true
-v0.RichText = true
-v0.Font = Enum.Font.RobotoCondensed
-v0.BackgroundColor3 = Color3.fromRGB(183, 255, 157)
-v0.TextColor3 = Color3.fromRGB(255, 255, 255)
-v0.TextStrokeTransparency = 0
-v0.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 local Testing = false
 if Testing == true then
 	massage = "Red"
 end
-v0.FocusLost:Connect(function()
-	if v0.Text ~= "" and v0.Text ~= " " then
-		massage = v0.Text
-	end
-	v0.Text = "Syceffuly!"
-end)
-wait(1)
+wait()
 for i=30, 0, -1 do
 	wait(1)
 	if massage ~= nil then
@@ -108,32 +92,11 @@ for i=30, 0, -1 do
 	end
 end
 
-gui:Destroy()
 guiuui:Destroy()
 
 Ser.SG:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
 if massage then
-	if massage == "Blue" then
-		WallHackColor = Color3.fromRGB(0, 0, 255)
-	elseif massage == "Red" then
-		WallHackColor = Color3.fromRGB(255, 0, 0)
-	elseif massage == "Gray" then
-		WallHackColor = Color3.fromRGB(134, 134, 134)
-	elseif massage == "Yellow" then
-		WallHackColor = Color3.fromRGB(255, 238, 0)
-	elseif massage == "Black and Red" then
-		WallHackColor = Color3.fromRGB(97, 0, 0)
-	elseif massage == "Black and Blue" then
-		WallHackColor = Color3.fromRGB(11, 0, 97)
-	elseif massage == "Green" then
-		WallHackColor = Color3.fromRGB(0, 162, 32)
-	elseif massage == "Purple" then
-		WallHackColor = Color3.fromRGB(127, 15, 255)
-	elseif massage == "Lime" then
-		WallHackColor = Color3.fromRGB(60, 255, 0)
-	elseif massage == "Black and Green" then
-		WallHackColor = Color3.fromRGB(4, 74, 0)
-	end
+	WallHackColor = massage
 else
 	WallHackColor = Color3.fromRGB(97, 0, 0)
 end
@@ -141,7 +104,7 @@ end
 local thumbnailType = Enum.ThumbnailType.HeadShot
 local thumbnailSize = Enum.ThumbnailSize.Size352x352
 
-local function CreateBox(ChoosedChildren, Sizee)
+local function CreateBox(ChoosedChildren)
 	local Box = Instance.new("BoxHandleAdornment")
 	Box.Parent = ChoosedChildren
 	Box.Adornee = ChoosedChildren
@@ -151,16 +114,12 @@ local function CreateBox(ChoosedChildren, Sizee)
 	Box.Visible = true
 	Box.AlwaysOnTop = true
 	Box.Name = ChoosedChildren.Name
-	if Sizee then
-		Box.Size = ChoosedChildren.Size + Sizee
-	else
-		Box.Size = ChoosedChildren.Size
-	end
+	Box.Size = ChoosedChildren.Size
 	return Box
 end
 
 local function SetWH(parent)
-	wait(0.7)
+	wait(0.2)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
 	if Ser.Plrs:FindFirstChild(parent.Name) then
@@ -221,6 +180,16 @@ local function SetWH(parent)
 	v9.Position = UDim2.new(0.7, 0, 0.4, 0)
 	v9.BackgroundTransparency = 0
 	v9.BorderSizePixel = 0
+	local v10 = Instance.new("TextLabel")
+	v10.Parent = v1
+	v10.Size = UDim2.new(0.3, 0, 0.2, 0)
+	v10.Position = UDim2.new(0.7, 0, 0.6, 0)
+	v10.BackgroundTransparency = 1
+	v10.TextColor3 = Color3.fromRGB(255, 255, 255)
+	v10.Font = Enum.Font.SourceSansBold
+	v10.TextScaled = true
+	v10.TextStrokeTransparency = 0
+	v10.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 	if game.Teams:FindFirstChildOfClass("Team") and parentPlr then
 		v9.BackgroundColor = parentPlr.TeamColor
 	else
@@ -250,84 +219,33 @@ local function SetWH(parent)
 			end
 		end
 	end)
-	wait(1)
 	for i=1, #parent:GetChildren() do
 		local ChoosedChildren = parent:GetChildren()[i]
-		if Humanoid.RigType == Enum.HumanoidRigType.R15 then
-			if ChoosedChildren:IsA("MeshPart") then
-				if ChoosedChildren.Name == "Head" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LeftFoot" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "RightFoot" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LeftHand" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "RightHand" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "UpperTorso" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LowerTorso" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "RightUpperArm" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "RightLowerArm" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LeftUpperArm" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LeftLowerArm" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "RightLowerLeg" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "RightUpperLeg" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LeftLowerLeg" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "LeftUpperLeg" then
-					CreateBox(ChoosedChildren)
-				end
-			end
-		elseif Humanoid.RigType == Enum.HumanoidRigType.R6 then
-			if ChoosedChildren:IsA("Part") then
-				if ChoosedChildren.Name == "Torso" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "Head" then
-					CreateBox(ChoosedChildren, Vector3.new(-0.5, 0, 0))
-				end
-				if ChoosedChildren.Name == "Left Arm" or ChoosedChildren.Name == "LeftArm" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "Right Arm" or ChoosedChildren.Name == "RightArm" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "Left Leg" or ChoosedChildren.Name == "LeftLeg" then
-					CreateBox(ChoosedChildren)
-				end
-				if ChoosedChildren.Name == "Right Leg" or ChoosedChildren.Name == "RightLeg" then
-					CreateBox(ChoosedChildren)
-				end
-			end
+		if ChoosedChildren:IsA("Part") or ChoosedChildren:IsA("MeshPart") then
+			CreateBox(ChoosedChildren)
 		end
 	end
 	if game.Players:FindFirstChild(parent.Name) then
 		local content, IsPlayer = game.Players:GetUserThumbnailAsync(parentPlr.UserId, thumbnailType, thumbnailSize)
 		v9.Image = content
 	end
+	if parent:FindFirstChildOfClass("Tool") then
+		v10.Text = parent:FindFirstChildOfClass("Tool").Name
+	else
+		v10.Text = "ToolName"
+	end
+	parent.ChildAdded:Connect(function(child)
+		if child:IsA("Tool") then
+			wait(.05)
+			v10.Text = child.Name
+		end
+	end)
+	parent.ChildRemoved:Connect(function(child)
+		if child:IsA("Tool") then
+			wait(.03)
+			v10.Text = "ToolName"
+		end
+	end)
 end
 
 function CreateTextInfo(Text, Duration)
@@ -363,6 +281,23 @@ Ser.Plrs.PlayerRemoving:Connect(function(player)
 	if player ~= plr then
 		if player.Character then
 			player.Character:FindFirstChild("WallHack"):Destroy()
+			for i=1, #player.Character:GetChildren() do
+				local CP = player.Character:GetChildren()[i]
+				if CP:IsA("MeshPart") then
+					for o=1, #CP:GetChildren() do
+						if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
+							CP:GetChildren()[o]:Destroy()
+						end
+					end
+				end
+				if CP:IsA("Part") then
+					for o=1, #CP:GetChildren() do
+						if CP:GetChildren()[o]:IsA("BoxHandleAdornment") then
+							CP:GetChildren()[o]:Destroy()
+						end
+					end
+				end
+			end
 		end
 	end
 end)
@@ -427,7 +362,9 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 end)
 for i=1, #Ser.Plrs:GetPlayers() do
 	local ChoosedPlr = Ser.Plrs:GetPlayers()[i]
-	SetWH(ChoosedPlr.Character)
+	if ChoosedPlr ~= plr then
+		SetWH(ChoosedPlr.Character)
+	end
 	if ChoosedPlr ~= plr then
 		ChoosedPlr.CharacterAdded:Connect(function(char)
 			SetWH(char)
