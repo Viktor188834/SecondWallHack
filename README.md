@@ -13,6 +13,8 @@ Binds //
  ["F9 print Keycodes"] = KeypadZero
  
  ["Tp To Mouse"] = Z
+
+ ["Animation From The Map"] = KeypadTwo
  
  ["Change TP To Mouse Keycode"] = KeypadOne
 
