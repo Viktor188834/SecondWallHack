@@ -6,7 +6,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Viktor188834/SecondWa
 🔑download Top executor for pc users: 
 https://www.xeno.onl
 
-Binds //
+🔌Binds //
 
  ["On/Off WallHack"] = RightControl
  
