@@ -61,8 +61,7 @@ end
 
 Ser.SG:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
 
-notif("		Type The Color Of WallHack / Напишите в чат цвет Волл Хака")
-notif("		Avaibled Colors / Возможные цвета (обезательно напишите на английском): ")
+notif("		Select The Color Of Wall Hack / выберите цвет Волл Хака")
 notif("Black", Color3.fromRGB(0, 0, 0))
 notif("White", Color3.fromRGB(255, 255, 255))
 notif("Blue", Color3.fromRGB(0, 0, 255))
@@ -128,29 +127,35 @@ local function SetWH(parent)
 	local v1 = Instance.new("BillboardGui")
 	local v2 = Instance.new("Frame")
 	local v3 = Instance.new("UICorner")
-	local v4 = Instance.new("UIStroke")
 	local v5 = Instance.new("Frame")
 	local v6 = Instance.new("UICorner")
+	local v11 = Instance.new("UICorner")
 	local v7 = Instance.new("TextLabel")
 	local v8 = Instance.new("TextLabel")
 	local v9 = Instance.new("ImageLabel")
 	local v10 = Instance.new("TextLabel")
-	v1.Size = UDim2.new(9, 0, 9, 0)
+	local v4 = Instance.new("Frame")
+	v11.CornerRadius = UDim.new(1, 0)
+	v11.Parent = v4
+	v4.Parent = v1
+	v4.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+	v4.BackgroundTransparency = 0
+	v4.Size = UDim2.new(0.07, 0, 0.95, 0)
+	v4.Position = UDim2.new(0.0175, 0, 0.025, 0)
+	v4.ZIndex = 0
+	v1.Size = UDim2.new(23, 0, 23, 0)
 	v1.Parent = parent
 	v1.Name = "WallHack"
 	v1.AlwaysOnTop = true
 	v1.ResetOnSpawn = false
 	v1.Adornee = parent:FindFirstChild("HumanoidRootPart")
-	v2.Parent = v1
+	v2.Parent = v4
 	v2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	v2.BackgroundTransparency = 0
-	v2.Size = UDim2.new(0.06, 0, 0.9, 0)
-	v2.Position = UDim2.new(0.02, 0, 0.05, 0)
+	v2.Size = UDim2.new(0.9, 0, 0.98, 0)
+	v2.Position = UDim2.new(0.05, 0, 0.01, 0)
 	v3.CornerRadius = UDim.new(1, 0)
 	v3.Parent = v2
-	v4.Parent = v2
-	v4.Thickness = 3
-	v4.Color = Color3.fromRGB(95, 95, 95)
 	v5.Parent = v2
 	v5.BackgroundColor3 = Color3.fromRGB(13, 191, 0)
 	v5.BackgroundTransparency = 0
