@@ -118,7 +118,7 @@ local function CreateBox(ChoosedChildren)
 end
 
 local function SetWH(parent)
-	wait(0.2)
+	wait(0.5)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
 	if Ser.Plrs:FindFirstChild(parent.Name) then
