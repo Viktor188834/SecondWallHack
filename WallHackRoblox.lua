@@ -427,3 +427,5 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 		end
 	end
 end)
+
+Ser.SG:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
