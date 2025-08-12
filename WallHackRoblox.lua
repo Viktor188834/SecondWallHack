@@ -119,6 +119,7 @@ end
 
 local function SetWH(parent)
 	parent:WaitForChild("Humanoid")
+	wait(1.5)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
 	if Ser.Plrs:FindFirstChild(parent.Name) then
