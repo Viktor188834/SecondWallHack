@@ -107,7 +107,7 @@ local function CreateBox(ChoosedChildren)
 	local Box = Instance.new("BoxHandleAdornment")
 	Box.Parent = ChoosedChildren
 	Box.Adornee = ChoosedChildren
-	Box.Transparency = 0.6
+	Box.Transparency = 0.8
 	Box.Color3 = WallHackColor
 	Box.ZIndex = 5
 	Box.Visible = true
