@@ -118,7 +118,6 @@ local function CreateBox(ChoosedChildren)
 end
 
 local function SetWH(parent)
-	parent:WaitForChild("Humanoid")
 	wait(1.5)
 	local Humanoid = parent:FindFirstChildOfClass("Humanoid")
 	local parentPlr = nil
@@ -283,14 +282,6 @@ function CreateTextInfo(Text, Duration)
 	Ser.Debris:AddItem(g1, Duration or 3)
 end
 
-Ser.Plrs.PlayerAdded:Connect(function(player)
-	if player ~= plr then
-		player.CharacterAdded:Connect(function(char)
-			SetWH(char)
-		end)
-	end
-end)
-
 Ser.Plrs.PlayerRemoving:Connect(function(player)
 	if player ~= plr then
 		if player.Character then
@@ -313,6 +304,16 @@ Ser.Plrs.PlayerRemoving:Connect(function(player)
 				end
 			end
 		end
+	end
+end)
+
+Ser.Plrs.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Wait()
+	if player ~= plr then
+		SetWH(player.Character)
+		player.CharacterAdded:Connect(function(char)
+			SetWH(char)
+		end)
 	end
 end)
 
@@ -374,12 +375,11 @@ Ser.UIS.InputBegan:Connect(function(i, g)
 		end
 	end
 end)
+
 for i=1, #Ser.Plrs:GetPlayers() do
 	local ChoosedPlr = Ser.Plrs:GetPlayers()[i]
 	if ChoosedPlr ~= plr then
 		SetWH(ChoosedPlr.Character)
-	end
-	if ChoosedPlr ~= plr then
 		ChoosedPlr.CharacterAdded:Connect(function(char)
 			SetWH(char)
 		end)
